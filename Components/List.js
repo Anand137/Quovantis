@@ -6,18 +6,10 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import DimensionConstants from '../Constants/DimensionConstants';
-import GetEndPoint from '../utilities/api';
-
-const Item = ({title, colorCode, source}) => {
-  console.log(title);
-  return (
-    <View style={styles.item}>
-      <Text style={{color: colorCode}}>{title}</Text>
-    </View>
-  );
-};
+import DropDownMain from '../Components/DropDownMain';
 
 const List = () => {
   const [showLoader, setShowLoader] = useState(true);
@@ -37,10 +29,10 @@ const List = () => {
   }, []);
 
   const renderItem = ({item}) => (
-    <Item
+    <DropDownMain
       title={item.category.categoryName}
       colorCode={item.category.colorCode}
-      source={item.category.imagePath}
+      subCatergory={item.category.subcategories}
     />
   );
 
@@ -56,7 +48,7 @@ const List = () => {
         <FlatList
           data={data}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.category.categoryName}
         />
       ) : null}
     </View>
@@ -74,13 +66,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 30,
-  },
-  item: {
-    backgroundColor: '#FFFFFF',
-    padding: 15,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    flexDirection: 'row',
   },
 });
 

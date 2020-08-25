@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   Screen: {
     width: DimensionConstants.windowWidth,
     height: DimensionConstants.windowHeigth,
-    backgroundColor: '#D3D3D3',
+    backgroundColor: '#eae9ef',
   },
 });
 
